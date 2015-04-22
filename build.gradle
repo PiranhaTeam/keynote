@@ -1,0 +1,121 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+mainClassName = "com.keynote.device.Main"
+
+//create a single Jar with all dependencies
+
+task fatJar(type: Jar) {
+  manifest {
+        attributes 'Implementation-Title': 'keyNote Device',  
+          'Implementation-Version': version,
+          'Main-Class': 'com.keynote.device.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+repositories {
+   flatDir {
+       dirs 'libs'
+   }
+}
+
+
+dependencies {
+   compile name: 'PngEncoder'
+   compile name: 'activation'
+   compile name: 'animation'
+   compile name: 'ant-launcher'
+   compile name: 'ant'
+   compile name: 'autocomplete'
+   compile name: 'classic-device-api'
+   compile name: 'classic-ui'
+   compile name: 'client-common'
+   compile name: 'commons-cli'
+   compile name: 'commons-codec'
+   compile name: 'commons-collections'
+   compile name: 'commons-httpclient'
+   compile name: 'commons-io'
+   compile name: 'commons-lang'
+   compile name: 'commons-logging'
+   compile name: 'da-core'
+   compile name: 'da-util'
+   compile name: 'da-webtest-client'
+   compile name: 'da-webtest-entity'
+   compile name: 'da-webtest-server-api'
+   compile name: 'device-access-premium'
+   compile name: 'device-access'
+   compile name: 'device-discovery'
+   compile name: 'device-manager'
+   compile name: 'deviceanywhere'
+   compile name: 'dnd'
+   compile name: 'filters'
+   compile name: 'forms'
+   compile name: 'google-collections'
+   compile name: 'httpclient'
+   compile name: 'httpcore'
+   compile name: 'images'
+   compile name: 'jackson-annotations'
+   compile name: 'jackson-core'
+   compile name: 'jackson-databind'
+   compile name: 'jackson-jaxrs-json-provider'
+   compile name: 'jackson-module-jaxb-annotations'
+   compile name: 'jai-codec'
+   compile name: 'jai-core'
+   compile name: 'javafx'
+   compile name: 'javaparser'
+   compile name: 'javassist'
+   compile name: 'javax.mail'
+   compile name: 'jaxrs-api'
+   compile name: 'jbcl'
+   compile name: 'jcip-annotations'
+   compile name: 'jdk-tools'
+   compile name: 'jgo-layout'
+   compile name: 'jgo'
+   compile name: 'jide-common'
+   compile name: 'jide-components'
+   compile name: 'jlayer'
+   compile name: 'jmf'
+   compile name: 'jniwrap-win32'
+   compile name: 'jnlp'
+   compile name: 'json'
+   compile name: 'jsoup'
+   compile name: 'jsr250-api'
+   compile name: 'lipstik-lf'
+   compile name: 'log4j'
+   compile name: 'looks'
+   compile name: 'migcalendar'
+   compile name: 'miglayout'
+   compile name: 'mp3spi'
+   compile name: 'mrj-adapter'
+   compile name: 'nekohtml'
+   compile name: 'org-jdesktop-animation-timing'
+   compile name: 'org.eclipse.osgi.services'
+   compile name: 'phonescout'
+   compile name: 'resteasy-jaxrs'
+   compile name: 'rhino'
+   compile name: 'rsyntaxtextarea'
+   compile name: 'rxtx'
+   compile name: 'scannotation'
+   compile name: 'scripting-api'
+   compile name: 'scripting-ui'
+   compile name: 'slf4j-api'
+   compile name: 'slf4j-log4j12'
+   compile name: 'speex'
+   compile name: 'studio'
+   compile name: 'swingx'
+   compile name: 'timingframework'
+   compile name: 'tritonus_remaining'
+   compile name: 'tritonus_share'
+   compile name: 'ui-framework'
+   compile name: 'wizard'
+   compile name: 'xercesImpl'
+   compile name: 'xml-apis'
+}
+
