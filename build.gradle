@@ -98,6 +98,7 @@ dependencies {
    compile name: 'org-jdesktop-animation-timing'
    compile name: 'org.eclipse.osgi.services'
    compile name: 'phonescout'
+   compile name: 'plexus-utils-2.0.7'
    compile name: 'resteasy-jaxrs'
    compile name: 'rhino'
    compile name: 'rsyntaxtextarea'
