@@ -28,4 +28,7 @@ public enum DeviceType {
 			return adbDeviceID;	
 		}
 
+		public boolean equalsIgnoreCase(final String value){
+		    return this.getDisplayName().equalsIgnoreCase(value);
+		}
 }

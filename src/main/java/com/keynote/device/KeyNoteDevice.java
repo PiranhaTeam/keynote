@@ -20,10 +20,10 @@ public class KeyNoteDevice {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		context = GlobalContext.getGlobalContext();
 	}
 	
 	public void lock(){
-		context = GlobalContext.getGlobalContext();
 		device.lock();
 		device.forceDeviceStatus();
 		try {

@@ -37,7 +37,7 @@ dependencies {
    compile name: 'classic-device-api'
    compile name: 'classic-ui'
    compile name: 'client-common'
-   compile name: 'commons-cli'
+   compile name: 'commons-cli-1.2'
    compile name: 'commons-codec'
    compile name: 'commons-collections'
    compile name: 'commons-httpclient'
