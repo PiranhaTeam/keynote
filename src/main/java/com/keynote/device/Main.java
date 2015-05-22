@@ -17,6 +17,7 @@ import com.citrixonline.android.utils.IAndroidSDK;
 import com.citrixonline.android.utils.LocalADBUtil;
 import com.citrixonline.android.utils.LocalAndroidSdk;
 import com.mc.api.device.Device;
+import com.mc.api.device.exception.DeviceExecutionException;
 
 
 
@@ -29,7 +30,7 @@ public class Main {
 	static DeviceType model;
 	private static KeyNoteDevice device;
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, DeviceExecutionException {
 				
 	parseArgs(args);
 		
@@ -61,7 +62,7 @@ public class Main {
 	}
 
 
-	private static void createADBTerminal(DeviceType deviceModel) {
+	private static void createADBTerminal(DeviceType deviceModel) throws DeviceExecutionException {
 		IAndroidDebugBridge adb = new LocalADBUtil();
 		adb.killADBServer();
 		
@@ -69,6 +70,7 @@ public class Main {
 		
 		device.lock();
 		
+		device.wakeup();
 		
 		adb = new LocalADBUtil(deviceModel.getadbDeviceID());
 //		System.out.println("Device Connected: " + adb.getAllDevicesConnected().toString());

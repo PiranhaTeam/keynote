@@ -2,7 +2,10 @@ package com.keynote.device;
 
 import com.mc.api.common.GlobalContext;
 import com.mc.api.device.Device;
+import com.mc.api.device.exception.DeviceExecutionException;
 import com.mc.api.device.exception.NoSuchDeviceException;
+import com.mc.api.device.helper.*;
+import com.mc.obmodel.KeyDevicePattern;
 
 public class KeyNoteDevice {
 
@@ -51,5 +54,31 @@ public class KeyNoteDevice {
 			context.shutdown();
 		}
 			
+	}
+
+	public void wakeup() throws DeviceExecutionException {
+		final String WAKE_UP_KEY = "__WakeUp__";
+		final com.mc.obmodel.DeviceType deviceType = device.getDataObject().getDeviceType();
+
+		// Find a key mapping with wake up sequence. Once it is found,
+		// set key mode it was found in
+		String keyMode = null;
+
+		for (KeyDevicePattern pattern : deviceType.getKeyDevicePatterns()) {
+			if (WAKE_UP_KEY.equals(pattern.getKeyVirtualID())) {
+				keyMode = pattern.getKeyModeID();
+				break;
+			}
+		}
+
+		if (keyMode != null) {
+
+			KeysHelper keysHelper = new KeysHelper();
+			keysHelper.setHoldTime(100);
+			keysHelper.setDelayTime(100);
+			device.sendKeys(
+					"[" + WAKE_UP_KEY + "]", KeyMode.fromString(keyMode), keysHelper); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+
 	}
 }
